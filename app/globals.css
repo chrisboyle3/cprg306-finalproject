@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: 59, 130, 246;
+  --secondary-color: 249, 115, 22;
+  --background-color: 243, 244, 246;
+  --text-color: 31, 41, 55;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: 96, 165, 250;
+    --secondary-color: 251, 146, 60;
+    --background-color: 17, 24, 39;
+    --text-color: 229, 231, 235;
+  }
+}
+
+body {
+  color: rgb(var(--text-color));
+  background: linear-gradient(
+    135deg,
+    rgb(var(--background-color)),
+    rgba(var(--primary-color), 0.1)
+  );
+  min-height: 100vh;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.neon-text {
+  text-shadow: 0 0 5px rgba(var(--primary-color), 0.8),
+               0 0 10px rgba(var(--primary-color), 0.6),
+               0 0 15px rgba(var(--primary-color), 0.4);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, rgb(var(--primary-color)), rgb(var(--secondary-color)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
