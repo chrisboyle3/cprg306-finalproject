@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 
 async function getMovies(searchTerm) {
   if (!searchTerm) return [];
-  const res = await fetch(`http://www.omdbapi.com/?apikey=2dfad89f&s=${encodeURIComponent(searchTerm)}`);
+  const res = await fetch(`https://www.omdbapi.com/?apikey=2dfad89f&s=${encodeURIComponent(searchTerm)}`);
   const data = await res.json();
   return data.Search || [];
 }
