@@ -22,7 +22,7 @@ export default function MovieList({ initialMovies }) {
                   <div className="w-full h-64 bg-gray-200 flex items-center justify-center">No Image</div>
                 )}
                 <div className="p-4">
-                  <h2 className="text-xl font-semibold mb-2">{movie.Title}</h2>
+                  <h2 className="text-xl text-gray-900 font-semibold mb-2">{movie.Title}</h2>
                   <p className="text-gray-600">Year: {movie.Year}</p>
                   <p className="text-gray-600">Type: {movie.Type}</p>
                 </div>

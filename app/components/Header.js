@@ -1,11 +1,33 @@
+'use client';
+
 import { useState } from 'react';
+import { useUserAuth } from "../_utils/auth-context";
+import { useRouter } from "next/navigation";
 
 export default function Header({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(searchTerm);
+  };
+
+  const handleSignIn = async () => {
+    try {
+      await gitHubSignIn();      
+    } catch (error) {
+      console.error("Error signing in:", error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await firebaseSignOut();      
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
@@ -25,9 +47,24 @@ export default function Header({ onSearch }) {
               Search
             </button>
           </form>
-          <button className="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100 transition duration-300">
-            Login
-          </button>
+          {user ? (
+            <div className="flex items-center">
+              <span className="mr-4">Welcome, {user.displayName}</span>
+              <button 
+                onClick={handleSignOut}
+                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-300"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={handleSignIn}
+              className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-300"
+            >
+              Login
+            </button>
+          )}
         </nav>
       </div>
     </header>
