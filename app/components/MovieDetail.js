@@ -1,12 +1,21 @@
-'use client'
+"use client"
+import { useRouter } from 'next/navigation';
 
 export default function MovieDetail({ movie }) {
+  const router = useRouter();
+
   if (!movie) {
     return <div className="text-center mt-8">Loading...</div>;
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <button 
+        onClick={() => router.back()} 
+        className="mb-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300"
+      >
+        ← Back to Search
+      </button>
       <main>
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/3">
