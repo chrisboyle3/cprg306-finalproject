@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { useUserAuth } from "../_utils/auth-context";
 import { useRouter } from "next/navigation";
@@ -32,25 +31,29 @@ export default function Header({ onSearch }) {
 
   return (
     <header className="glass-effect text-white p-4 mb-8">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold neon-text mb-4 md:mb-0">Movie Database</h1>
-        <nav className="flex items-center">
-          <form onSubmit={handleSubmit} className="flex mr-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-3xl font-bold neon-text">Movie Database</h1>
+        
+        <form onSubmit={handleSubmit} className="flex-grow mx-4">
+          <div className="flex justify-center">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search movies..."
-              className="p-2 rounded-l-md text-gray-800"
+              className="p-2 rounded-l-md text-gray-800 w-1/2"
             />
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition duration-300">
+            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition duration-300 ml-2">
               Search
             </button>
-          </form>
+          </div>
+        </form>
+
+        <nav>
           {user ? (
             <div className="flex items-center">
               <span className="mr-4">Welcome, {user.displayName}</span>
-              <button 
+              <button
                 onClick={handleSignOut}
                 className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-300"
               >
@@ -58,7 +61,7 @@ export default function Header({ onSearch }) {
               </button>
             </div>
           ) : (
-            <button 
+            <button
               onClick={handleSignIn}
               className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-300"
             >
