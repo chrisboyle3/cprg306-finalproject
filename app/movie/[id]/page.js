@@ -1,17 +1,8 @@
 import MovieDetail from '../../components/MovieDetail';
-
-async function getMovie(id) {
-  const res = await fetch(`https://www.omdbapi.com/?apikey=2dfad89f&i=${id}`);
-  const data = await res.json();
-  if (data.Response === "True") {
-    return data;
-  } else {
-    throw new Error(data.Error || "Failed to fetch movie");
-  }
-}
+import { getMovieDetails } from '@/app/services/movieApi';
 
 export default async function MoviePage({ params }) {
-  const movie = await getMovie(params.id);
+  const movie = await getMovieDetails(params.id);
 
   return <MovieDetail movie={movie} />;
 }

@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useRouter } from 'next/navigation';
 
 export default function MovieDetail({ movie }) {
@@ -10,8 +11,8 @@ export default function MovieDetail({ movie }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <button 
-        onClick={() => router.back()} 
+      <button
+        onClick={() => router.back()}
         className="mb-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300"
       >
         ← Back to Search

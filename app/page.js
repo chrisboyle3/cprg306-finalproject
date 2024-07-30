@@ -4,19 +4,13 @@ import { useState } from 'react';
 import MovieList from './components/MovieList';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
-async function getMovies(searchTerm) {
-  if (!searchTerm) return [];
-  const res = await fetch(`https://www.omdbapi.com/?apikey=2dfad89f&s=${encodeURIComponent(searchTerm)}`);
-  const data = await res.json();
-  return data.Search || [];
-}
+import { searchMovies } from './services/movieApi';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
 
   const handleSearch = async (searchTerm) => {
-    const results = await getMovies(searchTerm);
+    const results = await searchMovies(searchTerm);
     setMovies(results);
   };
 
